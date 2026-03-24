@@ -211,3 +211,21 @@ button.add-btn {
     left: 4px;
     top: 13px;
 }
+
+
+/* Media Query */
+@media (max-width: 767px) {
+    .column-display-holder {
+    flex-direction: column;
+}
+form {
+    flex-direction: column !important;
+    gap: 5px !important;
+}
+.taskCard-Column>div p {
+    height: 43px !important;
+}
+.form-row {
+    width: 100%;
+}
+}
