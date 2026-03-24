@@ -16,23 +16,37 @@ export const TaskModal = () => {
   if (!task) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
       <div className="bg-white p-6 rounded-xl w-96 flex flex-col gap-3">
-        
+        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Task Name</label>
         <input
           disabled={!isEditing}
           value={task.name}
           onChange={(e) => setTask({ ...task, name: e.target.value })}
           className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
         />
-
+        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Task Description</label>
         <textarea
           disabled={!isEditing}
           value={task.description}
           onChange={(e) => setTask({ ...task, description: e.target.value })}
           className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
         />
+        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Priority</label>
+        <select
+          disabled={!isEditing}
+          value={task.priority}
+          onChange={(e) =>
+            setTask({ ...task, priority: e.target.value })
+          }
+          className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
+        >
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
 
+          <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Status</label>
         <select
           disabled={!isEditing}
           value={task.status}

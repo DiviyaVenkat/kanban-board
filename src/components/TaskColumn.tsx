@@ -11,7 +11,6 @@ export const Column: React.FC<{ title: string; columnKey: TaskStatus }> = ({
 }) => {
   const { tasks, setSelectedTask } = useTasks();
 
-  // ✅ Make column droppable
   const { setNodeRef, isOver } = useDroppable({
     id: columnKey,
   });
@@ -23,7 +22,7 @@ export const Column: React.FC<{ title: string; columnKey: TaskStatus }> = ({
         isOver ? "bg-blue-100" : ""
       }`}
     >
-      <h2 className="text-xl font-bold mb-3">{title}</h2>
+      <h2 className="text-xl font-bold mb-3 column-title">{title}</h2>
 
       <SortableContext
         items={tasks[columnKey].map((task) => task.id)}

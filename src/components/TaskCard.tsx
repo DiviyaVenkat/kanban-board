@@ -19,10 +19,10 @@ export const TaskCard: React.FC<{ task: Task; onClick: () => void }> = ({ task, 
     transition,
   };
 
-  // 👇 Track drag vs click
   const isDraggingRef = useRef(false);
 
   return (
+    
     <div
       ref={setNodeRef}
       style={style}
@@ -36,24 +36,27 @@ export const TaskCard: React.FC<{ task: Task; onClick: () => void }> = ({ task, 
       }}
       onMouseUp={() => {
         if (!isDraggingRef.current) {
-          onClick(); // ✅ Only open modal if NOT dragging
+          onClick();
         }
       }}
-      className="bg-white p-3 rounded-xl shadow cursor-pointer"
+      className="bg-white p-3 rounded-xl shadow cursor-pointer task-card-info"
     >
       <div className="taskCardDetails">
-        <span>Task Name:</span>
+        <span className="text-sm text-gray-900 priority-text">{task.priority}</span>
+      </div> 
+
+      <div className="taskCardDetails">
         <h3 className="font-bold text-rose-800">{task.name}</h3>
       </div>
 
       <div className="taskCardDetails">
-        <span>Task Description:</span>
         <p className="text-sm text-gray-900">{task.description}</p>
       </div>
+      
 
       <div className="taskCardDetails">
-        <span>Task Status:</span>
-        <h3 className="text-sm mt-2 text-gray-900">{task.status}</h3>
+        <span>Task Status</span>
+        <h3 className="text-sm mt-2 text-gray-900 task-status-info">{task.status}</h3>
       </div>
     </div>
   );

@@ -14,18 +14,15 @@ import type { TaskStatus } from "./types/Task";
 const Board = () => {
   const { tasks, moveTask } = useTasks();
 
-  // ✅ Find which column a task or container belongs to
   const findContainer = (id: string): TaskStatus | undefined => {
-    // If it's a column itself
     if (id in tasks) return id as TaskStatus;
 
-    // Otherwise find which column contains the task
     return (Object.keys(tasks) as TaskStatus[]).find((key) =>
       tasks[key].some((t) => t.id === id)
     );
   };
 
-  // ✅ Handle drag end
+  
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -58,7 +55,7 @@ const Board = () => {
       <TaskForm />
       <TaskModal />
 
-      <div className="flex gap-6 justify-center items-start column-display-holder">
+      <div className="flex gap-6 justify-center items-start column-display-holder xs:flex-col">
         <Column title="To Do" columnKey="todo" />
         <Column title="In Progress" columnKey="inProgress" />
         <Column title="Done" columnKey="done" />

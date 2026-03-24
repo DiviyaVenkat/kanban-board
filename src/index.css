@@ -58,7 +58,7 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  /* border-inline: 1px solid var(--border); */
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -115,7 +115,6 @@ code {
 
 
 .taskCard-Column>div span {
-    width: 43%;
     text-align: left;
     color: black;
     padding: 0px 3px;
@@ -128,43 +127,87 @@ code {
     display: flex;
     gap: 11px;
     margin: 0px 0px;
-    padding: 7px;
+    padding: 4px 7px;
 }
-.taskCard-Column>div h3, .taskCard-Column>div p {
+.taskCard-Column>div h3 {
         margin: 0px;
     padding: 0px 8px;
-    background: #e9e9e9;
     color: black;
-    padding: 0px 12px;
-    font-weight: 600;
-    font-size: 15px;
+    padding: 0px 0px;
+    font-weight: 700;
+    font-size: 16px;
     border-radius: 100px;
-    flex: 1;
+    /* flex: 1; */
     text-align: left;
+    text-transform: capitalize;
+}
+.task-status-info {
+    display: inline-block;
+    width: auto;
+    padding: 4px 14px !important;
+    background: #80808029;
+    font-size: 14px !important;
 }
 .column-display-holder>div:nth-child(1) {
     background: #e3f4ff;
-    border-top: 2px solid #339ee3;
 }
 
 .column-display-holder>div:nth-child(2) {
     background: #fff1f1;
-    border-top: 2px solid #de5252;
 }
 
 .column-display-holder>div:nth-child(3) {
     background: #efffef;
-    border-top: 2px solid green;
+}
+.column-display-holder>div {
+    text-align: left;
+    padding: 16px 20px 21px 20px;
 }
 .taskCard-Column>div p {
-    height: 48px;
+        height: 50px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
 }
 button.add-btn {
     margin-top: 30px;
 }
+.column-display-holder h2 {
+    font-size: 18px;
+    padding-left: 22px;
+}
+.priority-text {
+    background: #49ace5;
+    color: white !important;
+    padding: 1px 13px !important;
+    text-transform: capitalize;
+    font-size: 13px !important;
+    letter-spacing: 1px;
+}
+.task-card-info:hover {
+    transform: scale(1.02);
+    transition: 0.2s all ease-in;
+}
+.task-card-info {
+    transition: 0.2s all ease-in;
+}
 
+.column-title {
+    position: relative;
+}
+
+.column-title:after {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #e1b51b;
+    border-radius: 100px;
+    left: 4px;
+    top: 13px;
+}
