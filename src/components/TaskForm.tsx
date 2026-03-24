@@ -18,6 +18,7 @@ export const TaskForm = () => {
 
   addTask({
     id: Date.now().toString(),
+    priority: form.priority,
     name: trimmedName,
     description: trimmedDesc,
     status: form.status,
