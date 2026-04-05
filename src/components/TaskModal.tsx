@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTasks } from "../context/TaskContent";
 import type { Task, TaskStatus } from "../types/Task";
 
@@ -8,52 +8,65 @@ export const TaskModal = () => {
   const [task, setTask] = useState<Task | null>(selectedTask);
   const [isEditing, setIsEditing] = useState(false);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     setTask(selectedTask);
-    setIsEditing(false);
+    setIsEditing(true);
+
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
   }, [selectedTask]);
 
   if (!task) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
-      <div className="bg-white p-6 rounded-xl w-96 flex flex-col gap-3">
-        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Task Name</label>
+    <div
+      className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center" style={{zIndex: 9}}
+      onClick={() => setSelectedTask(null)}
+    >
+      <div
+        className="bg-white p-6 rounded-xl w-96 flex flex-col gap-3"
+        onClick={(e) => e.stopPropagation()}
+      > <label className="block text-sm font-medium text-gray-700 text-left">Name</label>
         <input
+          ref={inputRef}
           disabled={!isEditing}
           value={task.name}
           onChange={(e) => setTask({ ...task, name: e.target.value })}
-          className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
+          className="border p-2"
         />
-        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Task Description</label>
+        <label className="block text-sm font-medium text-gray-700 text-left">Description</label>
         <textarea
           disabled={!isEditing}
           value={task.description}
-          onChange={(e) => setTask({ ...task, description: e.target.value })}
-          className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
+          onChange={(e) =>
+            setTask({ ...task, description: e.target.value })
+          }
+          className="border p-2"
         />
-        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Priority</label>
+        <label className="block text-sm font-medium text-gray-700 text-left">Priority</label>
         <select
           disabled={!isEditing}
           value={task.priority}
           onChange={(e) =>
             setTask({ ...task, priority: e.target.value })
           }
-          className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
+          className="border p-2"
         >
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
         </select>
-
-          <label htmlFor="priority" className="block text-sm font-medium text-gray-700 text-left ">Status</label>
+        <label className="block text-sm font-medium text-gray-700 text-left">Status</label>
         <select
           disabled={!isEditing}
           value={task.status}
           onChange={(e) =>
             setTask({ ...task, status: e.target.value as TaskStatus })
           }
-          className="shadow-lg max-w-full w-full p-2 text-base border border-gray-700 focus:border-pink-600 rounded-lg"
+          className="border p-2"
         >
           <option value="todo">To Do</option>
           <option value="inProgress">In Progress</option>
@@ -64,7 +77,7 @@ export const TaskModal = () => {
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}
-              className="bg-rose-800 text-white px-3 py-1 rounded"
+              className="bg-blue-500 text-white px-3 py-1 rounded"
             >
               Edit
             </button>
@@ -74,7 +87,7 @@ export const TaskModal = () => {
                 updateTask(task);
                 setIsEditing(false);
               }}
-              className="bg-rose-800 text-white px-3 py-1 rounded"
+              className="bg-green-600 text-white px-3 py-1 rounded"
             >
               Save
             </button>
@@ -82,14 +95,14 @@ export const TaskModal = () => {
 
           <button
             onClick={() => deleteTask(task.id)}
-            className="bg-gray-900 text-white px-3 py-1 rounded"
+            className="bg-red-500 text-white px-3 py-1 rounded"
           >
             Delete
           </button>
 
           <button
             onClick={() => setSelectedTask(null)}
-            className="ml-auto text-gray-500"
+            className="ml-auto bg-gray-800 text-white px-3 py-1 rounded"
           >
             Close
           </button>

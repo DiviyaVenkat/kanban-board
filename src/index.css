@@ -116,13 +116,16 @@ code {
 
 .taskCard-Column>div span {
     text-align: left;
-    color: black;
-    padding: 0px 3px;
+    /* color: black; */
+    padding: 0px 10px;
     font-weight: 600;
     font-size: 15px;
     border-radius: 100px;
 }
-
+.bottom-bar-card-list {
+    padding: 17px 0px 4px;
+    box-shadow: 0px -12px 13px -7px #00000014;
+}
 .taskCardDetails {
     display: flex;
     gap: 11px;
@@ -130,16 +133,20 @@ code {
     padding: 4px 7px;
 }
 .taskCard-Column>div h3 {
-        margin: 0px;
+    margin: 0px;
     padding: 0px 8px;
     color: black;
     padding: 0px 0px;
     font-weight: 700;
     font-size: 16px;
-    border-radius: 100px;
-    /* flex: 1; */
     text-align: left;
     text-transform: capitalize;
+    height: 28px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .task-status-info {
     display: inline-block;
@@ -164,7 +171,7 @@ code {
     padding: 16px 20px 21px 20px;
 }
 .taskCard-Column>div p {
-        height: 50px;
+    height: 50px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -194,7 +201,8 @@ button.add-btn {
     transition: 0.2s all ease-in;
 }
 .task-card-info {
-    transition: 0.2s all ease-in;
+        transition: 0.2s all ease-in;
+    box-shadow: 0px 5px 14px 0px #00000021;
 }
 
 .column-title {
@@ -206,12 +214,33 @@ button.add-btn {
     content: '';
     width: 10px;
     height: 10px;
-    background: #e1b51b;
+    background: #ffffff;
     border-radius: 100px;
     left: 4px;
     top: 13px;
 }
+.bottomBar-editdelete {
+    display: flex;
+    gap: 17px;
+}
+.bottomBar-editdelete img {
+    height: 20px;
+    width: 20px;
+    padding: 1px;
+}
+.bottomBar-editdelete img:hover {
+    filter: brightness(1) invert(1);
+}
+input:hover, textarea:hover, select:hover {
+    border: 1px solid #930c0c;
+    transition: 0.2s all ease-in;
+    box-shadow: 0px 0px 20px 0px #00000038;
+}
 
+input, textarea, select {
+    transition: 0.2s all ease-in;
+    box-shadow: 0px 5px 20px 0px #00000014;
+}
 
 /* Media Query */
 @media (max-width: 767px) {
