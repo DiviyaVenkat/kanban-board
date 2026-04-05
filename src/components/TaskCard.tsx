@@ -3,13 +3,13 @@ import type { Task } from "../types/Task";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import edit from "../assets/edit.png";
-
+import deleteIcon from "../assets/delete.png";
 
 
 export const TaskCard: React.FC<{
   task: Task;
   onEdit: () => void;
-  onDelete: () => void;
+  onDelete: () => string | void;
 }> = ({ task, onEdit, onDelete }) => {
   const {
     attributes,
@@ -73,14 +73,14 @@ export const TaskCard: React.FC<{
         </span>
         </div>
         <div className="bottomBar-editdelete">
-          <button
+        <button
           onClick={(e) => {
             e.stopPropagation();
             onEdit();
           }}
           className="text-gray-500 hover:text-blue-600"
         >
-          <img src={edit} title="Edit"></img>
+          <img src={edit} title="Edit" />
         </button>
         <button
       onClick={(e) => {
@@ -89,7 +89,7 @@ export const TaskCard: React.FC<{
       }}
       className="text-gray-500 hover:text-red-600"
     >
-      <img src="src/assets/delete.png" title="Delete"></img>
+      <img src={deleteIcon} title="Delete" />
     </button>
         </div>
       </div>
